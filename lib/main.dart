@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'startup.dart';
+import 'package:sample_login/screens/home.dart';
+import 'package:sample_login/screens/login.dart';
+import 'screens/startup.dart';
 
 void main() => runApp(MainApp());
 
@@ -11,7 +13,12 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: StartupPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => StartupScreen(),
+        '/login': (context) => LoginScreen(),
+        '/home': (context) => HomeScreen(),
+      },
     );
   }
 }
