@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_login/screens/home.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -9,6 +10,17 @@ class LoginForm extends StatefulWidget {
 
 class LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+
+  _onPressLogin() {
+    if (_formKey.currentState.validate()) {
+      // Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing data...')));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        ModalRoute.withName('/home'),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +63,7 @@ class LoginFormState extends State<LoginForm> {
           Container(
             margin: const EdgeInsets.only(top: 16),
             child: RaisedButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text('Processing data...')));
-                }
-              },
+              onPressed: _onPressLogin,
               child: Text('Login'),
             ),
           ),
